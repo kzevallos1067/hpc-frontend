@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap');
+
+/* Global font */
+html, body, [class*="css"] {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Hide default Streamlit elements */
+#MainMenu { visibility: hidden; }
+footer    { visibility: hidden; }
+            
+[data-testid="stHeader"] { 
+    background-color: transparent !important; 
+}
+
+/* App background */
+.stApp { background-color: #0b0c0e; }
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #111318 !important;
+    border-right: 1px solid rgba(255,255,255,0.06);
+}
+[data-testid="stSidebar"] * {
+    color: #8b8a82 !important;
+}
+[data-testid="stSidebar"] .stMarkdown h1,
+[data-testid="stSidebar"] .stMarkdown h2,
+[data-testid="stSidebar"] .stMarkdown h3 {
+    color: #1D9E75 !important;
+    font-family: 'Syne', sans-serif !important;
+}
+
+/* Metric cards */
+[data-testid="stMetric"] {
+    background: #111318;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+}
+[data-testid="stMetricLabel"] {
+    font-size: 10px !important;
+    letter-spacing: 0.12em !important;
+    color: #4a4a46 !important;
+    text-transform: uppercase;
+}
+[data-testid="stMetricValue"] {
+    font-family: 'Syne', sans-serif !important;
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+    color: #e8e6df !important;
+}
+[data-testid="stMetricDelta"] {
+    font-size: 11px !important;
+    color: #8b8a82 !important;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    background-color: #111318 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    gap: 4px;
+}
+.stTabs [data-baseweb="tab"] {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 11px !important;
+    letter-spacing: 0.08em;
+    color: #4a4a46 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    border-radius: 6px 6px 0 0 !important;
+}
+.stTabs [aria-selected="true"] {
+    color: #1D9E75 !important;
+    border-bottom: 2px solid #1D9E75 !important;
+    background: rgba(29,158,117,0.08) !important;
+}
+
+/* Selectbox / text input */
+.stSelectbox label, .stTextInput label, .stSlider label {
+    color: #4a4a46 !important;
+    font-size: 10px !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Divider */
+hr { border-color: rgba(255,255,255,0.06) !important; }
+
+/* Dataframe */
+.stDataFrame { background: #111318 !important; }
+
+/* Info / warning / error boxes */
+.stAlert {
+    border-radius: 8px !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 12px !important;
+}
+
+/* Section headers */
+.section-header {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #4a4a46;
+    padding: 2px 0 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 14px;
+}
+
+/* KPI accent colors */
+.kpi-green [data-testid="stMetricValue"] { color: #1D9E75 !important; }
+.kpi-blue  [data-testid="stMetricValue"] { color: #378ADD !important; }
+.kpi-amber [data-testid="stMetricValue"] { color: #EF9F27 !important; }
+.kpi-pink  [data-testid="stMetricValue"] { color: #D4537E !important; }
+
+/* Path sequence badges */
+.node-badge {
+    display: inline-block;
+    background: rgba(29,158,117,0.12);
+    border: 1px solid #0F6E56;
+    color: #1D9E75;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin: 3px;
+}
+.node-arrow {
+    color: #4a4a46;
+    font-size: 14px;
+    margin: 0 2px;
+}

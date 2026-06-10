@@ -12,6 +12,11 @@ Actualmente, la aplicación funciona con **datos de prueba** (sin conexión a la
 2. Instala las dependencias listadas en `requirements.txt`:
 
 ```bash
+
+py -m venv venv
+
+.\venv\Scripts\activate
+
 pip install -r requirements.txt
 
 ```
