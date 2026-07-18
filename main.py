@@ -47,7 +47,7 @@ if not df.empty:
     
     # Mostrar el tiempo secuencial base (Ts)
     ts_base = df_filtrado["Ts"].iloc[0] if not df_filtrado.empty else 0
-    st.info(f"⏱️ **Tiempo Secuencial Base (T_s):** {ts_base} ms")
+    st.info(f"⏱️ **Tiempo Secuencial Base (Ts):** {ts_base} ms")
 
     # --- GRÁFICAS ---
     col1, col2 = st.columns(2)
@@ -75,14 +75,14 @@ if not df.empty:
         ))
         
         fig_times.update_layout(
-            xaxis_title="Número de Procesadores",
+            xaxis_title="Número de Procesos",
             yaxis_title="Tiempo (ms)",
             hovermode="x unified"
         )
         st.plotly_chart(fig_times, use_container_width=True)
 
     with col2:
-        st.subheader("Eficiencia y Aceleración (Speedup)")
+        st.subheader("Eficiencia y Speedup")
         fig_metrics = go.Figure()
         
         # Speedup
@@ -104,18 +104,80 @@ if not df.empty:
         ))
         
         fig_metrics.update_layout(
-            xaxis_title="Número de Procesadores",
+            xaxis_title="Número de Procesos",
             yaxis_title="Puntuación",
             hovermode="x unified"
         )
         st.plotly_chart(fig_metrics, use_container_width=True)
 
+        # --- SPEEDUP VS PROCESADORES (TODAS LAS INSTANCIAS) ---
+    st.subheader("Speedup vs. P — Todas las Instancias")
+    fig_speedup_all = go.Figure()
+
+    # Línea de referencia: speedup ideal (lineal, S_p = p)
+    p_min, p_max = df["processors"].min(), df["processors"].max()
+    fig_speedup_all.add_trace(go.Scatter(
+        x=[p_min, p_max],
+        y=[p_min, p_max],
+        mode='lines',
+        name='Speedup ideal (lineal)',
+        line=dict(color='white', width=1.5, dash='dash')
+    ))
+
+    # Una línea por cada instancia (n)
+    for n in sorted(df["instance_nodes"].astype(int).unique()):
+        df_n = df[df["instance_nodes"] == str(n)].sort_values(by="processors")
+        fig_speedup_all.add_trace(go.Scatter(
+            x=df_n["processors"],
+            y=df_n["speedup_score"],
+            mode='lines+markers',
+            name=f'n={n}'
+        ))
+
+    fig_speedup_all.update_layout(
+        xaxis_title="Número de Procesos",
+        yaxis_title="Speedup (S_p)",
+        hovermode="x unified"
+    )
+    st.plotly_chart(fig_speedup_all, use_container_width=True)
+
+    # --- EFICIENCIA VS PROCESADORES (TODAS LAS INSTANCIAS) ---
+    st.subheader("Eficiencia vs. P — Todas las Instancias")
+    fig_eff_all = go.Figure()
+
+    # Línea de referencia: eficiencia ideal (100%)
+    fig_eff_all.add_trace(go.Scatter(
+        x=[df["processors"].min(), df["processors"].max()],
+        y=[1, 1],
+        mode='lines',
+        name='Eficiencia ideal (100%)',
+        line=dict(color='white', width=1.5, dash='dash')
+    ))
+
+    # Una línea por cada instancia (n)
+    for n in sorted(df["instance_nodes"].astype(int).unique()):
+        df_n = df[df["instance_nodes"] == str(n)].sort_values(by="processors")
+        fig_eff_all.add_trace(go.Scatter(
+            x=df_n["processors"],
+            y=df_n["eficency_score"],
+            mode='lines+markers',
+            name=f'n={n}'
+        ))
+
+    fig_eff_all.update_layout(
+        xaxis_title="Número de Procesos",
+        yaxis_title="Eficiencia (E_p)",
+        hovermode="x unified"
+    )
+    st.plotly_chart(fig_eff_all, use_container_width=True)
+    
+    
     # --- TABLA DE DATOS CRUDOS ---
     st.subheader("Datos Experimentales Detallados")
     # Formatear la tabla para mostrar solo columnas relevantes
     columnas_mostrar = ["processors", "Ts", "Tp", "Tp_theo", "energy", "speedup_score", "eficency_score"]
     df_mostrar = df_filtrado[columnas_mostrar].rename(columns={
-        "processors": "Procesadores",
+        "processors": "Procesos",
         "Ts": "T. Secuencial (ms)",
         "Tp": "T. Paralelo Real (ms)",
         "Tp_theo": "T. Paralelo Teórico (ms)",
