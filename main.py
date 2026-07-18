@@ -30,7 +30,7 @@ df = load_data()
 
 if not df.empty:
     # --- BARRA LATERAL (FILTROS) ---
-    st.sidebar.header("Parámetros del Clúster")
+    st.sidebar.header(" Instancias del problema TSP")
     
     # Filtrar por Instancia de Nodos (Ciudades)
     instancias_disponibles = sorted(df["instance_nodes"].astype(int).unique())
@@ -47,7 +47,7 @@ if not df.empty:
     
     # Mostrar el tiempo secuencial base (Ts)
     ts_base = df_filtrado["Ts"].iloc[0] if not df_filtrado.empty else 0
-    st.info(f"⏱️ **Tiempo Secuencial Base ($T_s$):** {ts_base} segundos")
+    st.info(f"⏱️ **Tiempo Secuencial Base (T_s):** {ts_base} ms")
 
     # --- GRÁFICAS ---
     col1, col2 = st.columns(2)
@@ -61,7 +61,7 @@ if not df.empty:
             x=df_filtrado["processors"], 
             y=df_filtrado["Tp"],
             mode='lines+markers',
-            name='Tiempo Real ($T_p$)',
+            name='Tiempo Real (T_p)',
             line=dict(color='red', width=2)
         ))
         
@@ -76,7 +76,7 @@ if not df.empty:
         
         fig_times.update_layout(
             xaxis_title="Número de Procesadores",
-            yaxis_title="Tiempo (segundos)",
+            yaxis_title="Tiempo (ms)",
             hovermode="x unified"
         )
         st.plotly_chart(fig_times, use_container_width=True)
@@ -90,7 +90,7 @@ if not df.empty:
             x=df_filtrado["processors"], 
             y=df_filtrado["speedup_score"],
             mode='lines+markers',
-            name='Speedup (Multiplicador)',
+            name='Speedup',
             line=dict(color='blue', width=2)
         ))
         
@@ -116,18 +116,18 @@ if not df.empty:
     columnas_mostrar = ["processors", "Ts", "Tp", "Tp_theo", "energy", "speedup_score", "eficency_score"]
     df_mostrar = df_filtrado[columnas_mostrar].rename(columns={
         "processors": "Procesadores",
-        "Ts": "T. Secuencial (s)",
-        "Tp": "T. Paralelo Real (s)",
-        "Tp_theo": "T. Paralelo Teórico (s)",
+        "Ts": "T. Secuencial (ms)",
+        "Tp": "T. Paralelo Real (ms)",
+        "Tp_theo": "T. Paralelo Teórico (ms)",
         "energy": "Energía Consumida",
         "speedup_score": "Speedup",
         "eficency_score": "Eficiencia"
     })
     
     st.dataframe(df_mostrar.style.format({
-        "T. Secuencial (s)": "{:.3f}",
-        "T. Paralelo Real (s)": "{:.3f}",
-        "T. Paralelo Teórico (s)": "{:.3f}",
+        "T. Secuencial (ms)": "{:.3f}",
+        "T. Paralelo Real (ms)": "{:.3f}",
+        "T. Paralelo Teórico (ms)": "{:.3f}",
         "Energía Consumida": "{:.4f}",
         "Speedup": "{:.3f}",
         "Eficiencia": "{:.3f}"
