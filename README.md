@@ -40,20 +40,15 @@ Con pandas se manipulan los datos y se implementan filtros que permiten aislar r
 
     * Tamaño del grafo (nodos).
 
-    * Cantidad de procesadores.
-
 * **Visualización (Plotly & Componentes UI):**
 Se emplea plotly.graph_objects para generar gráficos interactivos de alto nivel:
-
-    * 🗺️ Representación visual de la ruta mínima encontrada (grafos).
 
     * ⚡ Curvas de escalabilidad (Speedup vs. Procesadores).
 
     * 📉 Gráficos de degradación de la eficiencia.
 
-    * ⏱️ Comparativas de tiempo de ejecución (pendiente).
+    * ⏱️ Comparativas de tiempo de ejecución.
 
-    * 🔋 Gráficos de consumo de energía (pendiente).
 
 ## 📌 Estado Actual
 
@@ -61,6 +56,4 @@ Se emplea plotly.graph_objects para generar gráficos interactivos de alto nivel
 
 * 🔄 Conexión a la API en desarrollo.
 
-* 🛠️ Gráficos de tiempo, energía, escalabilidad fuerte y débil aún pendientes de implementación.
-
-En el código donde están los datos de prueba pueden ver la estructura que necesito que tengan los json con los resultados para poder implementarlos con la api.
+* 🛠️ Gráficos de tiempo,escalabilidad fuerte.
