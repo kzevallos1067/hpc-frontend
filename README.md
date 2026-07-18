@@ -32,7 +32,7 @@ streamlit run main.py
 
 ## 🧩 Funcionalidades
 
-* **Consumo de API (si el backend no está definido usa datos de prueba):**  
+* **Consumo de API:**  
 Uso de la librería requests para conectarse al endpoint en Go y extraer datos en formato JSON.
 
 * **Procesamiento y Filtros:** 
@@ -52,8 +52,8 @@ Se emplea plotly.graph_objects para generar gráficos interactivos de alto nivel
 
 ## 📌 Estado Actual
 
-* ✅ Interfaz funcional con datos de prueba.
+* ✅ Interfaz funcional con datos reales.
 
-* 🔄 Conexión a la API en desarrollo.
+* 🔄 Conexión a la API lista para usarse, primero ejecutar el el código del backend.
 
 * 🛠️ Gráficos de tiempo,escalabilidad fuerte.
