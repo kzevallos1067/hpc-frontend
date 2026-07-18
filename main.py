@@ -6,7 +6,7 @@ import requests
 
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="HPC TSP Dashboard", layout="wide")
-st.title("⚙️ Análisis de Rendimiento - Clúster TSP (Branch & Bound)")
+st.title("Análisis de Resultados - TSP (Branch & Bound)")
 st.markdown("Visualización de métricas de escalabilidad, tiempos teóricos vs reales y eficiencia de nodos.")
 
 # --- CARGA DE DATOS ---
@@ -170,6 +170,9 @@ if not df.empty:
         hovermode="x unified"
     )
     st.plotly_chart(fig_eff_all, use_container_width=True)
+    
+
+
     
     
     # --- TABLA DE DATOS CRUDOS ---
